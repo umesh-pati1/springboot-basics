@@ -9,17 +9,16 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 @Component
 public class RunJsonDataLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(RunJsonDataLoader.class);
 
-    private final RunRepository runRepository;
+    private final JdbcClientRunRepository runRepository;
     private final ObjectMapper objectMapper;
 
-    public RunJsonDataLoader(RunRepository runRepository, ObjectMapper objectMapper) {
+    public RunJsonDataLoader(JdbcClientRunRepository runRepository, ObjectMapper objectMapper) {
         this.runRepository = runRepository;
         this.objectMapper = objectMapper;
     }
@@ -40,6 +39,8 @@ public class RunJsonDataLoader implements CommandLineRunner {
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read json data", e);
             }
+        }else {
+            log.info("Not loading Runs from JSON data because the collection contains data.");
         }
     }
 }
