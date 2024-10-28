@@ -24,11 +24,9 @@ public class HelloworldApplication {
 		ConfigurableApplicationContext context =  SpringApplication.run(HelloworldApplication.class, args);
 		WelcomeMessage welcomeMessage = (WelcomeMessage) context.getBean("welcomeMessage");
 
-		log.info("HelloWorldApplication started successfully!!!!???!");
+		log.info("HelloWorldApplication started successfully");
 		System.out.println(welcomeMessage);
 	}
-
-
 
 	@Bean
 	CommandLineRunner runner(){
@@ -36,7 +34,6 @@ public class HelloworldApplication {
 			Run run = new Run(1, "Spring", LocalDateTime.now(), LocalDateTime.now().plusHours(1),2 , Location.OUTDOOR);
 			log.info(run.toString());
 		};
-
 	}
 
 }
