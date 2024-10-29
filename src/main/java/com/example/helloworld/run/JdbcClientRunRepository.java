@@ -44,7 +44,7 @@ public class JdbcClientRunRepository {
         return jdbcClient.sql("SELECT * FROM Run").query().listOfRows().size();
     }
 
-    public void saveAl(List<Run> runs){
+    public void saveAll(List<Run> runs){
         runs.forEach(this::create);
     }
 

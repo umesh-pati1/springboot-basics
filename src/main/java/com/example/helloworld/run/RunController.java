@@ -24,7 +24,10 @@ public class RunController {
 
     @GetMapping("")
     List<Run> findAll(){
-        return runRepository.findAll();
+
+        List<Run> runs = runRepository.findAll();
+        log.info("Runs : {}", runs);
+        return runs;
     }
 
     @GetMapping("/{id}")

@@ -2,22 +2,18 @@ package com.example.helloworld;
 
 import com.example.helloworld.user.User;
 import com.example.helloworld.user.UserHttpClient;
-import com.example.helloworld.user.UserRestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 import java.util.List;
 
-
-@RestController
 @SpringBootApplication
 public class HelloworldApplication {
 
@@ -34,6 +30,8 @@ public class HelloworldApplication {
 		RestClient restClient = RestClient.create("https://jsonplaceholder.typicode.com");
 
 		HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient)).build();
+
+		log.info("Initialize UserHttp client");
 
 		return factory.createClient(UserHttpClient.class);
 	}

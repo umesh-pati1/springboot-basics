@@ -27,6 +27,8 @@ public class RunJsonDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        log.info("loading json");
+
         if(runRepository.count() == 0){
             try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/runs.json")) {
 
@@ -34,7 +36,7 @@ public class RunJsonDataLoader implements CommandLineRunner {
 
                 log.info("Reading {} runs from JSON data and saving to database.", allRuns.runs().size());
 
-                runRepository.saveAl(allRuns.runs());
+                runRepository.saveAll(allRuns.runs());
 
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read json data", e);
