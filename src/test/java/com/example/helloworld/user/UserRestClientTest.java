@@ -52,7 +52,7 @@ class UserRestClientTest {
     @Test
     void shouldFindUserById() throws JsonProcessingException {
         // given
-        User user = new User(1,
+        User mockUser = new User(1,
                 "Leanne",
                 "lgraham",
                 "lgraham@gmail.com",
@@ -63,10 +63,10 @@ class UserRestClientTest {
 
         // when
         this.server.expect(requestTo("https://jsonplaceholder.typicode.com/users/1"))
-                .andRespond(withSuccess(objectMapper.writeValueAsString(user), MediaType.APPLICATION_JSON));
+                .andRespond(withSuccess(objectMapper.writeValueAsString(mockUser), MediaType.APPLICATION_JSON));
 
         // then
-        User leanne = client.findById(1);
+        User user = client.findById(1);
         assertEquals(user.name(), "Leanne", "User name should be Leanne");
         assertEquals(user.username(), "lgraham", "User username should be lgraham");
         assertEquals(user.email(), "lgraham@gmail.com");

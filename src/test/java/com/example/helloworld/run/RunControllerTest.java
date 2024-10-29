@@ -32,7 +32,7 @@ class RunControllerTest {
     @MockBean
     RunRepository repository;
 
-    private List<Run> runs = new ArrayList<>();
+    private final List<Run> runs = new ArrayList<>();
 
     @BeforeEach
     void setup(){
